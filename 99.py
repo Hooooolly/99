@@ -44,7 +44,7 @@ def incoming_sms():
                 player_one = current_game.players[0]
                 for p in current_game.players:
                     cards = p.cards
-                    cards = [i2c[i] for i in cards]
+                    cards = [i2c[i-1] for i in cards]
                     start_message = "[TEST_BUILD] Hello! You've been invited to play 99! You're cards are "
                     start_message += str(cards)
                     start_message += ". " + player_one.name + " is up first!"
@@ -72,7 +72,7 @@ def incoming_sms():
                 message = 'It\'s not your turn yet! Please wait for ' + current_player.name + '.'
             else:
                 player_cards = current_player.cards
-                player_cards = [i2c[i] for i in player_cards]
+                player_cards = [i2c[i-1] for i in player_cards]
                 choice = ''
                 if body == 'A' | body == '10':
                     choice = body[len(body) - 1:]
