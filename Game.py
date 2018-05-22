@@ -57,8 +57,8 @@ class Game:
             self.stack += 10
         if card == 13:
             self.stack = 99
-        if stack > 99:
-            return [stack, reverse, True]
+        if self.stack > 99:
+            return [self.stack, reverse, True]
         else:
             self.players[0].remove(card)
             self.players[0].append(self.deck.draw_top())
@@ -66,5 +66,5 @@ class Game:
             if reverse:
                 self.players.reverse()
             self.players.append(current_player)
-            return [stack, reverse, False]
+            return [self.stack, reverse, False]
         
