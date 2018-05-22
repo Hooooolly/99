@@ -61,7 +61,7 @@ class Game:
             return [self.stack, reverse, True]
         else:
             self.players[0].cards.remove(card)
-            self.players[0].cards.append(self.deck.draw_top())
+            self.players[0].cards.append(self.cards.draw_top())
             current_player = self.players.pop(0)
             if reverse:
                 self.players.reverse()
