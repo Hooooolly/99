@@ -24,7 +24,7 @@ def incoming_sms():
         all_message = body[6:]
         current_players = active_numbers[send_num].players
         for p in current_players:
-            send_message(p.number, all_message)
+            send_message(p.number, '[SERVER_MESSAGE]' + all_message)
     elif send_num in pregame_numbers:
         #print(pregame_numbers)
         if pregame_numbers[send_num] == 0:
