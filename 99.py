@@ -17,7 +17,7 @@ def incoming_sms():
     message = ''
     
     if send_num in active_numbers:
-        
+        message = 'In development'
     elif body == 'Create Game':
         new_game = Game()
         active_numbers[send_num] = new_game
