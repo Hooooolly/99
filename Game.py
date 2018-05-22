@@ -26,7 +26,7 @@ class Game:
     def new_player(self, name, number):
         self.players.append(Player(name, number))
     
-    def start_game():
+    def start_game(self):
         self.started = True
         for p in players:
             for _ in range(3):
