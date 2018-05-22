@@ -74,7 +74,7 @@ def incoming_sms():
                 player_cards = current_player.cards
                 player_cards = [i2c[i-1] for i in player_cards]
                 choice = ''
-                if body == 'A' | body == '10':
+                if (body == 'A+') | (body == '10+') | (body == 'A-') | (body == '10-'):
                     choice = body[len(body) - 1:]
                     body = body[:len(body) - 1]
                 if not body in player_cards:
