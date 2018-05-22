@@ -11,6 +11,7 @@ client = Client(account_sid, auth_token)
 active_numbers = {}
 games = []
 pregame_numbers = {}
+conversion = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 @app.route("/sms", methods=['GET', 'POST'])
 def incoming_sms():
@@ -19,7 +20,7 @@ def incoming_sms():
     
     message = ''
     if send_num in pregame_numbers:
-        print(pregame_numbers)
+        #print(pregame_numbers)
         if pregame_numbers[send_num] == 0:
             active_numbers[send_num].new_player(body, send_num)
             message = "Nice to meet you " + body + '. Now please text me the names of the players you would like to add to the game in this format \'Name: Phone Number\''
@@ -27,7 +28,16 @@ def incoming_sms():
         elif pregame_numbers[send_num] == 1:
             if body == 'Done':
                 pregame_numbers.pop(send_num)
-                active_numbers[send_num].start_game()
+                current_game = active_numbers[send_num]
+                current_game.start_game()
+                player_one = current_game.players[0]
+                for p in current_game.players:
+                    cards = p.cards
+                    cards = [conversion[i] for i in cards]
+                    start_message = "Hello! You've been invited to play 99! You're cards are "
+                    start_message += str(cards)
+                    start_message += ". " + player_one.name + " is up first!"
+                    send_message(p.number, start_message)
             else:
                 new_name, new_num = body.split(": ")
                 if (new_num[0] != '+') | (len(new_num) != 12):
