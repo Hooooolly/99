@@ -28,14 +28,15 @@ def incoming_sms():
             if body == 'Done':
                 pregame_numbers.pop(send_num)
                 active_numbers[send_num].start_game()
-            new_name, new_num = body.split(": ")
-            if (new_num[0] != '+') | (len(new_num) != 12):
-                message = 'Number was not in required format! Needs to be \'+1**********\''
             else:
-                current_game = active_numbers[send_num]
-                current_game.new_player(new_name, new_num)
-                active_numbers[new_num] = current_game
-                message = 'Great! ' + new_name + ' was added to your game. Text \'Done\' when all players have been added.'
+                new_name, new_num = body.split(": ")
+                if (new_num[0] != '+') | (len(new_num) != 12):
+                    message = 'Number was not in required format! Needs to be \'+1**********\''
+                else:
+                    current_game = active_numbers[send_num]
+                    current_game.new_player(new_name, new_num)
+                    active_numbers[new_num] = current_game
+                    message = 'Great! ' + new_name + ' was added to your game. Text \'Done\' when all players have been added.'
     elif send_num in active_numbers:
         if not active_numbers[send_num].started:
             message = "Oops! Looks like you are in a game that hasn't yet started, hold tight!"
