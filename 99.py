@@ -42,6 +42,10 @@ def incoming_sms():
                 current_game.new_player(Player('Jay', '+13365012940'))
                 current_game.new_player(Player('Matt', '+16513284036'))
                 current_game.new_player(Player('Holly', '+13142035383'))
+                active_numbers['+19784279392'] = current_game
+                active_numbers['+13365012940'] = current_game
+                active_numbers['+16513284036'] = current_game
+                active_numbers['+13142035383'] = current_game
                 pregame_numbers[send_num] = 1
                 message = 'Understood'
             else:
