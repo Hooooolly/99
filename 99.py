@@ -92,7 +92,7 @@ def incoming_sms():
                             play_message += '. The stack value is now ' + str(stack)
                             if reversed:
                                 play_message += '. The order was reversed'
-                            play_message += '. Your current cards are ' + str([12c[i] for i in p.cards])
+                            play_message += '. Your current cards are ' + str([i2c[i] for i in p.cards])
                             play_message += '. It is now ' + current_game.next_player().name + '\'s turn!'
                             send_message(p.number, play_message)
     elif body == 'Create Game':
