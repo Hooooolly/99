@@ -92,6 +92,11 @@ def incoming_sms():
         active_numbers[send_num] = new_game
         pregame_numbers[send_num] = 0
         message = 'You have started a game! First, let me know what your name is!'
+    elif body[:5] == 'admin':
+        all_message = body[6:]
+        current_players = active_numbers[send_num].players
+        for p in current_players:
+            send_message(p.number, all_message)
     else:
         message = 'Welcome to 99! You don\'t seem to be in a game right now, text me \'Create Game\' to get started!'
     
