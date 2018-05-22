@@ -86,6 +86,7 @@ def incoming_sms():
                         over_message += '. This pushed the stack over 99. ' + current_player.name + ' loses!'
                         for p in current_game.players:
                             active_numbers.pop(p.number)
+                            send_message(p.number, over_message)
                     else:
                         for p in current_game.players:
                             play_message = current_player.name + ' has played a ' + body
