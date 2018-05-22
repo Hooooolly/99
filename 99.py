@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
+from Game import Game, Cards
+from Player import Player
 
 app = Flask(__name__)
 account_sid = 'ACa77cec72b91ee091ea25a32b97374eaa'
