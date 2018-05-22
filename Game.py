@@ -51,7 +51,7 @@ class Game:
         if card == 10:
             if choice == '+':
                 self.stack += 10
-            else
+            else:
                 self.stack -= 10
         if card == 11 | card == 12:
             self.stack += 10
