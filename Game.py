@@ -53,7 +53,7 @@ class Game:
                 self.stack += 10
             else:
                 self.stack -= 10
-        elif card == 11 | card == 12:
+        elif (card == 11) | (card == 12):
             self.stack += 10
         elif card == 13:
             self.stack = 99

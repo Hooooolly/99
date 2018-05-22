@@ -17,7 +17,7 @@ c2i = {'A':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, '10':10, '
 def incoming_sms():
     body = request.values.get('Body', None)
     send_num = request.values.get('From', None)
-    
+    print('[INCOMING_MESSAGE] ' + send_num + ': ' + body)
     message = ''
     
     if body[:5] == 'admin':
@@ -25,13 +25,29 @@ def incoming_sms():
         current_players = active_numbers[send_num].players
         for p in current_players:
             send_message(p.number, '[SERVER_MESSAGE]' + all_message)
+    if body[:5] == 'cheat':
+        cheater_name = body[6:]
+        current_players = active_numbers[send_num].players
+        for p in current_players:
+            if p.name == cheater_name:
+                p.cards.append(13)
+                send_message(p.number, 'Accio K! Your cards are now ' + str([i2c[i-1] for i in p.cards]))
     elif send_num in pregame_numbers:
         #print(pregame_numbers)
         if pregame_numbers[send_num] == 0:
-            first_player = Player(body, send_num)
-            active_numbers[send_num].new_player(first_player)
-            message = "Nice to meet you " + body + '. Now please text me the names of the players you would like to add to the game in this format \'Name: Phone Number\''
-            pregame_numbers[send_num] = 1
+            if body == 'dummies':
+                current_game = active_numbers[send_num]
+                current_game.new_player(Player('Changming', '+19784279392'))
+                current_game.new_player(Player('Jay', '+13365012940'))
+                current_game.new_player(Player('Matt', '+16513284036'))
+                current_game.new_player(Player('Holly', '+13142035383'))
+                pregame_numbers[send_num] = 1
+                message = 'Understood'
+            else:
+                first_player = Player(body, send_num)
+                active_numbers[send_num].new_player(first_player)
+                message = "Nice to meet you " + body + '. Now please text me the names of the players you would like to add to the game in this format \'Name: Phone Number\''
+                pregame_numbers[send_num] = 1
         elif pregame_numbers[send_num] == 1:
             if body == 'Done':
                 pregame_numbers.pop(send_num)
@@ -49,9 +65,10 @@ def incoming_sms():
                     start_message += str(cards)
                     start_message += ". " + player_one.name + " is up first!"
                     send_message(p.number, start_message)
-                for p in current_game.players:
-                    quick_note = 'If you are trying to play a 10 or A, specify your action by adding a + or - (e.g. A- specifies 1)'
-                    send_message(p.number, quick_note)
+                if current_game.quick_note:
+                    for p in current_game.players:
+                        quick_note = 'If you are trying to play a 10 or A, specify your action by adding a + or - (e.g. A- specifies 1)'
+                        send_message(p.number, quick_note)
             else:
                 new_name, new_num = body.split(": ")
                 if (new_num[0] != '+') | (len(new_num) != 12):
