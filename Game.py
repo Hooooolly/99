@@ -43,20 +43,22 @@ class Game:
                 self.stack += 11
             else:
                 self.stack += 1
-        if card == 4:
+        elif card == 4:
             reverse = True
             self.stack = self.stack
-        if card == 9:
+        elif card == 9:
             self.stack = self.stack
-        if card == 10:
+        elif card == 10:
             if choice == '+':
                 self.stack += 10
             else:
                 self.stack -= 10
-        if card == 11 | card == 12:
+        elif card == 11 | card == 12:
             self.stack += 10
-        if card == 13:
+        elif card == 13:
             self.stack = 99
+        else:
+            self.stack += card
         if self.stack > 99:
             return [self.stack, reverse, True]
         else:
