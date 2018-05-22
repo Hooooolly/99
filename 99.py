@@ -89,7 +89,7 @@ def incoming_sms():
                     else:
                         for p in current_game.players:
                             play_message = current_player.name + ' has played a ' + body
-                            play_message += '. The stack value is now ' + stack
+                            play_message += '. The stack value is now ' + str(stack)
                             if reversed:
                                 play_message += '. The order was reversed'
                             play_message += '. Your current cards are ' + str(p.cards)
