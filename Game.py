@@ -28,6 +28,6 @@ class Game:
     
     def start_game(self):
         self.started = True
-        for p in players:
+        for p in self.players:
             for _ in range(3):
                 p.cards.append(self.cards.draw_top())
