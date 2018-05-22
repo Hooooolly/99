@@ -24,7 +24,7 @@ def incoming_sms():
             active_numbers[send_num].new_player(body, send_num)
             message = "Nice to meet you " + body + '. Now please text me the names of the players you would like to add to the game in this format \'Name: Phone Number\''
             pregame_numbers[send_num] = 1
-        if pregame_numbers[send_num] == 1:
+        elif pregame_numbers[send_num] == 1:
             if body == 'Done':
                 pregame_numbers.pop(send_num)
                 active_numbers[send_num].start_game()
