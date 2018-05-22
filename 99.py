@@ -94,6 +94,7 @@ def incoming_sms():
                                 play_message += '. The order was reversed'
                             play_message += '. Your current cards are ' + str(p.cards)
                             play_message += '. It is now ' + current_game.next_player().name + '\'s turn!'
+                            send_message(p.number, play_message)
     elif body == 'Create Game':
         new_game = Game()
         active_numbers[send_num] = new_game
