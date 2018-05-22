@@ -18,7 +18,7 @@ def incoming_sms():
     send_num = request.values.get('From', None)
     
     message = ''
-    if send_num in pregame_numbers.keys:
+    if send_num in list(pregame_numbers.keys):
         if pregame_numbers[send_num] == 0:
             active_numbers[send_num].new_player(body, send_num)
             message = "Nice to meet you " + body + '. Now please text me the names of the players you would like to add to the game in this format \'Name: Phone Number\''
@@ -35,7 +35,7 @@ def incoming_sms():
                 current_game.new_player(new_name, new_num)
                 active_numbers[new_num] = current_game
                 message = 'Great! ' + new_name + ' was added to your game. Text \'Done\' when all players have been added.'
-    elif send_num in active_numbers.keys:
+    elif send_num in list(active_numbers.keys):
         if not active_numbers[send_num].started:
             message = "Oops! Looks like you are in a game that hasn't yet started, hold tight!"
         else:
