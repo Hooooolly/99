@@ -30,6 +30,10 @@ def incoming_sms():
                 pregame_numbers.pop(send_num)
                 current_game = active_numbers[send_num]
                 current_game.start_game()
+                #Sketchy method to make Jay go first
+                if len(current_game.players) > 1:
+                    player_temp = current_game.players.pop(0)
+                    current_game.players.insert(1, player_temp)
                 player_one = current_game.players[0]
                 for p in current_game.players:
                     cards = p.cards
