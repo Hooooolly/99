@@ -36,7 +36,7 @@ def incoming_sms():
                 active_numbers[new_num] = current_game
                 message = 'Great! ' + new_name + ' was added to your game. Text \'Done\' when all players have been added.'
     elif send_num in active_numbers.keys:
-        if !active_numbers[send_num].started:
+        if not active_numbers[send_num].started:
             message = "Oops! Looks like you are in a game that hasn't yet started, hold tight!"
         else:
             message = "In Development, Game started!"
