@@ -18,6 +18,7 @@ class Cards:
 class Game:
     
     def __init__(self):
+        self.quick_note = True
         self.started = False
         self.players = []
         self.cards = Cards()

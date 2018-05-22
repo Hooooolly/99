@@ -37,6 +37,7 @@ def incoming_sms():
         if pregame_numbers[send_num] == 0:
             if body == 'dummies':
                 current_game = active_numbers[send_num]
+                current_game.quick_note = False
                 current_game.new_player(Player('Changming', '+19784279392'))
                 current_game.new_player(Player('Jay', '+13365012940'))
                 current_game.new_player(Player('Matt', '+16513284036'))
