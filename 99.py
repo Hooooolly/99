@@ -48,6 +48,33 @@ def incoming_sms():
                 active_numbers['+13142035383'] = current_game
                 pregame_numbers[send_num] = 1
                 message = 'Understood'
+            elif body == 'dummies_reverse':
+                current_game = active_numbers[send_num]
+                current_game.quick_note = False
+                current_game.new_player(Player('Matt', '+16513284036'))
+                current_game.new_player(Player('Holly', '+13142035383'))
+                current_game.new_player(Player('Changming', '+19784279392'))
+                current_game.new_player(Player('Jay', '+13365012940'))
+                active_numbers['+19784279392'] = current_game
+                active_numbers['+13365012940'] = current_game
+                active_numbers['+16513284036'] = current_game
+                active_numbers['+13142035383'] = current_game
+                pregame_numbers[send_num] = 1
+                message = 'Understood'
+            elif body == 'dummies_random':
+                current_game = active_numbers[send_num]
+                current_game.quick_note = False
+                current_game.new_player(Player('Changming', '+19784279392'))
+                current_game.new_player(Player('Jay', '+13365012940'))
+                current_game.new_player(Player('Matt', '+16513284036'))
+                current_game.new_player(Player('Holly', '+13142035383'))
+                current_game.players.random()
+                active_numbers['+19784279392'] = current_game
+                active_numbers['+13365012940'] = current_game
+                active_numbers['+16513284036'] = current_game
+                active_numbers['+13142035383'] = current_game
+                pregame_numbers[send_num] = 1
+                message = 'Understood'    
             else:
                 first_player = Player(body, send_num)
                 active_numbers[send_num].new_player(first_player)
